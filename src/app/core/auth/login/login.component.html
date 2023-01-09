@@ -1,1 +1,31 @@
-<p>login works!</p>
+
+    <div>
+  
+      <form (ngSubmit)="onClick()" > 
+            <h3>Sign In</h3>
+        <div >
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput name="username" type="text" formControlName="username" placeholder="Inserire Username">
+            <mat-error *ngIf="utenteReactive.get('username')?.hasError('required')">Username obbligatorio</mat-error>
+            <mat-error *ngIf="utenteReactive.get('username')?.hasError('minlength')">Il campo Username deve avere almeno 3
+              caratteri</mat-error>
+          </mat-form-field>
+        </div>
+        <div >
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput name="password" type="password" formControlName="password" placeholder="Inserire la password">
+            <mat-error *ngIf="utenteReactive.get('password')?.hasError('required')">Password obbligatoria</mat-error>
+            <mat-error *ngIf="utenteReactive.get('password')?.hasError('minlength')">Il campo Password deve avere almeno 3
+              caratteri</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div>
+          <button type="submit" [disabled]="utenteReactive.invalid">Sign in</button>
+        </div>
+  
+      </form>
+  
+    </div>
