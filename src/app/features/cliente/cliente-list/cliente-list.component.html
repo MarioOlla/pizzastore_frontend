@@ -1,0 +1,35 @@
+<div style='margin: 15px; padding: 10px; background-color: blueviolet;'>
+    <div>
+        <a mat-button mat-raised-button color="primary" (click)="create()">Add New</a>
+    </div>
+      
+    <div class='table-responsive' style="display: flex; justify-content: center;" >
+        <table class='table table-hover '>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo</th>
+                    <th>Attivo</th>
+                    <th>Azioni</th>
+                </tr>
+                <tr *ngFor="let clienteItem of clienti">
+                    <td>{{clienteItem.id!}}</td>
+                    <td>{{clienteItem.nome!}}</td>
+                    <td>{{clienteItem.cognome!}}</td>
+                    <td>{{clienteItem.indirizzo!}}</td>
+                    <td>{{clienteItem.attivo! | booleanToString}}</td>
+                    <td>
+                        <a mat-button mat-raised-button color="primary" (click)="show(clienteItem.id!)">Dettaglio</a>
+                        <a mat-button mat-raised-button color="secondary" (click)="edit(clienteItem.id!)" >Aggiorna</a>
+                        <a mat-button mat-raised-button color="danger" (click)="delete(clienteItem.id!)" >Elimina</a>
+
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+  </div>
