@@ -1,0 +1,30 @@
+<mat-card style='display: flex; align-items: center; flex-direction: row; padding: 20px;'>
+
+    <mat-card-content>
+        <form [formGroup]="userReactive" class="example-form" (ngSubmit)="login()">
+            <p>
+                <mat-form-field appearance="outline" color="primary" floatLabel="always">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Inserisci username" type="text" name="username" formControlName="username">
+                    <mat-error *ngIf="userReactive.get('username')?.hasError('required')">Username obbligatorio</mat-error>
+                    <mat-error *ngIf="userReactive.get('username')?.hasError('minlength')">Minimo 4 caratteri</mat-error>
+                </mat-form-field>
+  
+            <p>
+                <mat-form-field appearance="outline" color="primary" floatLabel="always">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Inserisci password" type="password" name="password"
+                    formControlName="password">
+                    <mat-error *ngIf="userReactive.get('password')?.hasError('required')">Password obbligatoria</mat-error>
+                    <mat-error *ngIf="userReactive.get('password')?.hasError('minlength')">Minimo 4 caratteri</mat-error>
+                </mat-form-field>
+            </p>
+  
+            <div class="col-12">
+                <button type="submit" name="submit" value="submit" id="submit" color="primary" mat-icon-button><mat-icon>done</mat-icon></button>
+            </div>
+  
+        </form>
+    </mat-card-content>
+  
+  </mat-card>
