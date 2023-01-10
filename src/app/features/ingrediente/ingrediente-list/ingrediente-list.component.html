@@ -1,0 +1,33 @@
+<div style='margin: 15px; padding: 10px; background-color: blueviolet;'>
+    <div>
+        <a mat-button mat-raised-button color="primary" (click)="create()">Add New</a>
+    </div>
+      
+    <div class='table-responsive' style="display: flex; justify-content: center;" >
+        <table class='table table-hover '>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Codice</th>
+                    <th>Descrizione</th>
+                    <th>Prezzo</th>
+                    <th>Azioni</th>
+                </tr>
+                <tr *ngFor="let ingredienteItem of ingredienti">
+                    <td>{{ingredienteItem.id!}}</td>
+                    <td>{{ingredienteItem.codice!}}</td>
+                    <td>{{ingredienteItem.descrizione!}}</td>
+                    <td>{{ingredienteItem.prezzo!}}</td>
+                    <td>
+                        <a mat-button mat-raised-button color="primary" (click)="show(ingredienteItem.id!)">Dettaglio</a>
+                        <a mat-button mat-raised-button color="secondary" (click)="edit(ingredienteItem.id!)" >Aggiorna</a>
+                        <a mat-button mat-raised-button color="danger" (click)="delete(ingredienteItem.id!)" >Elimina</a>
+
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+  </div>

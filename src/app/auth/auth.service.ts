@@ -22,11 +22,12 @@ export class AuthService {
   private userLoggedSubject$: BehaviorSubject<User | null> = new BehaviorSubject<User |null>(null);
 
   executeLogin(loginForm:User):Observable<User>{
-    return this.http.post<{'jwt-token':string, 'ruolo':string}>(this.apiServer+'/login', JSON.stringify(loginForm),this.httpOptions).pipe(switchMap(res => of({username:loginForm.username , token: res['jwt-token'] ,ruolo: res['ruolo']})))
+    return this.http.post<{'jwt-token':string, 'ruoli':string[]}>(this.apiServer+'/login', JSON.stringify(loginForm),this.httpOptions).pipe(switchMap(res => of({username:loginForm.username , token: res['jwt-token'] ,ruoli: res['ruoli']})))
   }
 
   setUserLogged(user:User | null){
     this.userLoggedSubject$.next(user);
+    this.router.navigateByUrl("welcome");
   }
 
   getUserLogged():Observable<User | null>{
@@ -34,7 +35,19 @@ export class AuthService {
   }
 
   isAdmin():boolean{
-   return this.userLoggedSubject$.value?.ruolo === "ROLE_ADMIN";
+   return this.userLoggedSubject$.value?.ruoli?.includes("Amministratore")? true:false;
+  }
+
+  isProprietario():boolean{
+    return this.userLoggedSubject$.value?.ruoli?.includes("Proprietario")? true:false;
+  }
+
+  isPizzaiolo():boolean{
+    return this.userLoggedSubject$.value?.ruoli?.includes("Pizzaiolo")? true:false;
+  }
+
+  isFattorino():boolean{
+    return this.userLoggedSubject$.value?.ruoli?.includes("Fattorino")? true:false;
   }
 
   isLogged():boolean{

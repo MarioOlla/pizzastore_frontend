@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
@@ -28,9 +28,6 @@ export class LoginComponent{
   login(){
     this.auth.executeLogin(this.userReactive.getRawValue()).subscribe({next:res => {
       this.auth.setUserLogged(res);
-    }, complete:() => {
-     this.router.navigateByUrl('list');
     }})
   }
-
 }

@@ -1,0 +1,45 @@
+<mat-card style='display: flex; align-items: center; flex-direction: row; padding: 20px;'>
+
+    <mat-card-content>
+        <form [formGroup]="ingredienteReactive" class="example-form" (ngSubmit)="save()">
+
+            <p>
+                <mat-form-field appearance="outline" color="primary" floatLabel="always">
+                    <mat-label>Codice</mat-label>
+                    <input matInput placeholder="Inserisci codice" type="text" name="codice" formControlName="codice">
+                    <mat-error *ngIf="ingredienteReactive.get('codice')?.hasError('required')">Codice obbligatorio</mat-error>
+                    <mat-error *ngIf="ingredienteReactive.get('codice')?.hasError('minlength')">Minimo 4 caratteri</mat-error>
+                </mat-form-field>
+  
+            <p>
+                <mat-form-field appearance="outline" color="primary" floatLabel="always">
+                    <mat-label>Descrizione</mat-label>
+                    <input matInput placeholder="Inserisci il descrizione" type="text" name="descrizione"
+                    formControlName="descrizione">
+                    <mat-error *ngIf="ingredienteReactive.get('descrizione')?.hasError('required')">Descrizione obbligatoria</mat-error>
+                    <mat-error *ngIf="ingredienteReactive.get('descrizione')?.hasError('minlength')">Minimo 4 caratteri</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field appearance="outline" color="primary" floatLabel="always">
+                    <mat-label>Prezzo</mat-label>
+                    <input matInput placeholder="Inserisci prezzo" type="text" name="prezzo"
+                    formControlName="prezzo">
+                    <mat-error *ngIf="ingredienteReactive.get('prezzo')?.hasError('required')">Prezzo obbligatorio</mat-error>
+                    <mat-error *ngIf="ingredienteReactive.get('prezzo')?.hasError('min')">Minimo 0,10</mat-error>
+                </mat-form-field>
+            </p>
+  
+            <div class="col-12">
+                <button mat-icon-button aria-label="Back" (click)="back()" color="primary">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <button type="submit" name="submit" value="submit" id="submit" color="primary" mat-icon-button
+                    *ngIf="disable()"><mat-icon>done</mat-icon></button>
+            </div>
+  
+        </form>
+    </mat-card-content>
+  
+  </mat-card>
